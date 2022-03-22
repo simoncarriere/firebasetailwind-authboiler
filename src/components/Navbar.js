@@ -1,9 +1,13 @@
 import {Link} from 'react-router-dom'
+
+// Hooks
+import {useLogout} from '../hooks/useLogout'
 import {useAuthContext} from '../hooks/useAuthContext'
   
 export default function Navbar() {
 
     const {user} = useAuthContext()
+    const {logout} = useLogout()
 
     return (
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -36,7 +40,7 @@ export default function Navbar() {
                 <div className="ml-10 space-x-4 flex items-center">
                     <p>Hello, {user.displayName}</p>
                     <button 
-                        // onClick={logout}
+                        onClick={logout}
                         className="inline-block bg-gray-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-100 hover:bg-gray-800"
                     >
                         Logout

@@ -11,22 +11,26 @@ import { useAuthContext } from './hooks/useAuthContext';
 
 export default function App() {
 
-  const {user} = useAuthContext()
+  const {authIsReady, user} = useAuthContext()
 
   return (
-    <BrowserRouter>
-          <Navbar />
-          <Switch>
-            <Route exact path="/">
-              {user ? <Home /> : <Redirect to="/login"/>}
-            </Route>
-            <Route path="/login">
-              {!user ? <Login /> : <Redirect to="/"/>}
-            </Route>
-            <Route path="/signup">
-              {!user ? <Signup /> : <Redirect to="/"/>}
-            </Route>
-          </Switch>
-    </BrowserRouter>
+    <>
+      {authIsReady && ( 
+        <BrowserRouter>
+              <Navbar />
+              <Switch>
+                <Route exact path="/">
+                  {user ? <Home /> : <Redirect to="/login"/>}
+                </Route>
+                <Route path="/login">
+                  {!user ? <Login /> : <Redirect to="/"/>}
+                </Route>
+                <Route path="/signup">
+                  {!user ? <Signup /> : <Redirect to="/"/>}
+                </Route>
+              </Switch>
+        </BrowserRouter>
+      )}
+    </>
   )
 }
