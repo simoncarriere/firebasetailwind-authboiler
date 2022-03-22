@@ -1,11 +1,16 @@
 import {useState} from 'react'
-
+import {useLogin} from '../hooks/useLogin'
 
 export default function Signup() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {login, error,isPending} = useLogin()
 
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      login(email, password)
+    }
 
     return ( 
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -14,7 +19,7 @@ export default function Signup() {
             <h2 className="mt-6 text-center text-2xl font-base text-gray-900">Welcome back</h2>
             
           </div>
-          <form className="mt-8 space-y-6" >
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
             <input type="hidden" name="remember" defaultValue="true" />
 
             <div className="rounded-md shadow-sm -space-y-px">
