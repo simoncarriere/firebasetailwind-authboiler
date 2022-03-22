@@ -10,32 +10,36 @@ export const useSignup = () => {
 
 
     // Firebase auth allows us to use & set certain properties (Coming from our form feilds)
-    const signup = async(email, password, displayName) => {
+    const signup = async(email, password, displayName, passwordConfirmation) => {
         // Reset Error State
         setError(null)
         setIsPending(true)
 
         try {
-            // Create User using firebase auth method
-            const res = await projectAuth.createUserWithEmailAndPassword(email, password)
+            if(password===passwordConfirmation) {
+                // Create User using firebase auth method
+                const res = await projectAuth.createUserWithEmailAndPassword(email, password)
 
-            // Not getting a response at all (example network connection)
-            if(!res){
-                throw new Error('Could not complete signup')
-            }
+                // Not getting a response at all (example network connection)
+                if(!res){
+                    throw new Error('Could not complete signup')
+                }
 
-            // Add Display name to user name
-            await res.user.updateProfile({displayName: displayName})
+                // Add Display name to user name
+                await res.user.updateProfile({displayName: displayName})
 
-            // Dispatch login Action via our useAuthContext Hook
-            dispatch({type: 'LOGIN', payload: res.user})
+                // Dispatch login Action via our useAuthContext Hook
+                dispatch({type: 'LOGIN', payload: res.user})
 
-            // Check for cancellation
-            if(!isCancelled){ 
+                // Check for cancellation
+                if(!isCancelled){ 
+                    setIsPending(false)
+                    setError(null)
+                }
+            } else {
                 setIsPending(false)
-                setError(null)
+                setError('Passwords do not match')
             }
-
 
         } catch (err) {
             // Example : Email taken or password too short 

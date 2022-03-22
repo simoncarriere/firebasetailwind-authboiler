@@ -3,8 +3,6 @@ import { projectAuth } from '../firebase/config'
 
 export const AuthContext = createContext()
 
-
-
 // Mirror Firebase Auth State and our global auth state context
 export const authReducer = (state, action) => {
     switch (action.type) {
@@ -20,8 +18,6 @@ export const authReducer = (state, action) => {
             return state
     }
 }
-
-
 
 // Context that wraps our entire application, tracks user status and gives access to our reducer actions
 export const AuthContextProvider = ({children}) => {
@@ -41,13 +37,11 @@ export const AuthContextProvider = ({children}) => {
     useEffect(() => {
         const unsub = projectAuth.onAuthStateChanged((user) => {
             dispatch({type: 'AUTH_IS_READY',payload: user})
-            console.log('onAuthStateChanged ran')
+            // console.log('onAuthStateChanged ran')
         })
         // Cleanup (Cancel subscription to auth status)
         return() => unsub()
     },[])
-
-
 
     return ( 
         <AuthContext.Provider value={{...state, dispatch}}>

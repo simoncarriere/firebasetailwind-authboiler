@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {Link} from 'react-router-dom'
 
 // Hooks
 import {useSignup} from '../hooks/useSignup'
@@ -8,12 +9,14 @@ export default function Signup() {
     const [displayName, setDisplayName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
     const {signup, isPending, error} = useSignup()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        signup(email, password, displayName)   
-      }
+        signup(email, password, displayName, passwordConfirmation)   
+    }
 
     return ( 
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -72,8 +75,25 @@ export default function Signup() {
                         type="password"
                         autoComplete="current-password"
                         required
-                        className="appearance-none  block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        className="appearance-none  block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-3"
                         placeholder="Password"
+                    />
+                </div>
+                {/* Password Confirmation*/}
+                <div>
+                    <label htmlFor="password-confirmation" className="sr-only">
+                    Password
+                    </label>
+                    <input
+                        id="password-confirmation"
+                        name="password-confirmation"
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}
+                        value={passwordConfirmation}
+                        type="password"
+                        autoComplete="current-password"
+                        required
+                        className="appearance-none  block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        placeholder="Password Confirmation"
                     />
                 </div>
             </div>
@@ -101,9 +121,9 @@ export default function Signup() {
             </div>
             <div className="text-sm">
             <div className="w-full flex justify-center">
-                <p  className="font-sm text-gray-500 hover:text-gray-600">
-                Forgot your password?
-                </p>
+                <Link to="/Login" className="font-sm text-gray-500 hover:text-gray-600">
+                    Already have an account?
+                </Link>
             </div>
           </div>
           </form>

@@ -1,7 +1,10 @@
 import {useState} from 'react'
+import {Link} from 'react-router-dom'
+
+// Hooks
 import {useLogin} from '../hooks/useLogin'
 
-export default function Signup() {
+export default function Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -62,7 +65,6 @@ export default function Signup() {
 
 
             <div>
-              
               {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
               {!isPending ? (
                 <button
@@ -83,9 +85,9 @@ export default function Signup() {
             </div>
             <div className="text-sm">
             <div className="w-full flex justify-center">
-                <p  className="font-sm text-gray-500 hover:text-gray-600">
-                Forgot your password?
-                </p>
+                <Link to="forgot"  className="font-sm text-gray-500 hover:text-gray-600">
+                  Forgot your password?
+                </Link>
             </div>
           </div>
           
