@@ -23,7 +23,7 @@ export default function Navbar() {
                     <Link to="login"
                         className="inline-block bg-gray-100 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-600 hover:bg-gray-200"
                     >
-                        Sign in
+                        Log in
                     </Link>
                     <Link to="signup"
                         className="inline-block bg-gray-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-100 hover:bg-gray-800"
