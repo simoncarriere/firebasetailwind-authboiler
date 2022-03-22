@@ -33,7 +33,8 @@ export default function Navbar() {
                 </div>
             )}
             {user && (
-                <div className="ml-10 space-x-4">
+                <div className="ml-10 space-x-4 flex items-center">
+                    <p>Hello, {user.displayName}</p>
                     <button 
                         // onClick={logout}
                         className="inline-block bg-gray-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-100 hover:bg-gray-800"

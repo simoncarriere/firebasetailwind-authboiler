@@ -62,12 +62,24 @@ export default function Signup() {
 
 
             <div>
-              <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Log in
-              </button>
+              
+              {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+              {!isPending ? (
+                <button
+                  type="submit"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Log in
+                </button>
+              ) : (
+                <button
+                  type="text"
+                  disabled
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-grey-700 bg-gray-100  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  loading...
+                </button>
+              )}
             </div>
             <div className="text-sm">
             <div className="w-full flex justify-center">
@@ -76,6 +88,7 @@ export default function Signup() {
                 </p>
             </div>
           </div>
+          
           </form>
         </div>
       </div>
