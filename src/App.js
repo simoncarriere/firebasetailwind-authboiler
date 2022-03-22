@@ -1,8 +1,7 @@
+import Navbar from './components/Navbar.js'
 
-function App() {
+export default function App() {
   return (
-    <h1>hello</h1>
-  );
+    <Navbar />
+  )
 }
-
-export default App;
