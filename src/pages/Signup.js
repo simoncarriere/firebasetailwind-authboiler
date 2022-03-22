@@ -1,21 +1,27 @@
 import {useState} from 'react'
 
+// Hooks
+import {useSignup} from '../hooks/useSignup'
 
 export default function Signup() {
 
     const [displayName, setDisplayName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {signup, isPending, error} = useSignup()
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        signup(email, password, displayName)   // console.log('user:', email, password, displayName)
+      }
 
     return ( 
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-2xl font-base text-gray-900">Create your account</h2>
-            
           </div>
-          <form className="mt-8 space-y-6" >
+          <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
             <input type="hidden" name="remember" defaultValue="true" />
 
             <div className="rounded-md shadow-sm -space-y-px">
@@ -71,8 +77,6 @@ export default function Signup() {
                     />
                 </div>
             </div>
-
-
 
             <div>
               <button

@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom'
-
+import {useAuthContext} from '../hooks/useAuthContext'
   
 export default function Navbar() {
 
-    const user = null
+    const {user} = useAuthContext()
 
     return (
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
