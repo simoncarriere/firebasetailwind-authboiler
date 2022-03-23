@@ -1,4 +1,17 @@
+import {useEffect} from 'react'
+
+import {useAuthContext} from '../hooks/useAuthContext'
+
+
 const Dashboard = () => {
+
+    const {user} = useAuthContext()
+
+
+    useEffect(() => {
+      console.log(user)
+    })
+
     return ( 
         <div className="py-10">
           <header>
@@ -7,13 +20,17 @@ const Dashboard = () => {
             </div>
           </header>
           <main>
-            <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-              {/* Replace with your content */}
-              <div className="px-4 py-8 sm:px-0">
-                <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
+              <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                  <div className="px-4 py-8 sm:px-0">
+                    <p>{user.displayName}</p>
+                    <p>{user.email}</p>
+                    {user.photoURL ? (
+                      <img src={user.photoURL} alt="user profile"/>
+                    ) : (
+                      <button className="underline text-blue-500">Upload Photo</button>
+                    )}
+                  </div>
               </div>
-              {/* /End replace */}
-            </div>
           </main>
         </div>
      );

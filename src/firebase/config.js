@@ -19,7 +19,11 @@ const firebaseConfig = {
   const projectFirestore = firebase.firestore()
   const projectAuth = firebase.auth()
 
+  const googleProvider = new firebase.auth.GoogleAuthProvider()
+  const githubProvider = new firebase.auth.GithubAuthProvider()
+  const twitterProvider = new firebase.auth.TwitterAuthProvider()
+
 //   //Timestamp setup
   const timestamp = firebase.firestore.Timestamp
 
-  export  {projectFirestore, projectAuth, timestamp}
+  export  {projectFirestore, projectAuth, timestamp, googleProvider, githubProvider, twitterProvider}
