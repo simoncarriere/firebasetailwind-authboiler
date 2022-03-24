@@ -24,16 +24,8 @@ export default function Navbar() {
             </div>
             {!user && (
                 <div className="ml-10 space-x-4">
-                    <Link to="login"
-                        className="inline-block bg-gray-100 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-600 hover:bg-gray-200"
-                    >
-                        Log in
-                    </Link>
-                    <Link to="signup"
-                        className="inline-block bg-gray-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-100 hover:bg-gray-800"
-                    >
-                        Sign up
-                    </Link>
+                    <Link to="login" className="btn-light">Log in</Link>
+                    <Link to="signup" className="btn-dark">Sign up</Link>
                 </div>
             )}
             {user && (
@@ -42,7 +34,8 @@ export default function Navbar() {
                    
                     <button 
                         onClick={logout}
-                        className="inline-block bg-gray-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-gray-100 hover:bg-gray-800"
+                        
+                        className="btn-dark"
                     >
                         Logout
                     </button>

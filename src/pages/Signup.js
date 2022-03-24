@@ -52,7 +52,7 @@ export default function Signup() {
                         type="text"    
                         autoComplete="name"
                         required
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md mb-3"
+                        className="input-field"
                         placeholder="Full Name"
                     />
                 </div>
@@ -69,7 +69,7 @@ export default function Signup() {
                         type="email"    
                         autoComplete="email"
                         required
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md mb-3"
+                        className="input-field"
                         placeholder="Email"
                     />
                 </div>
@@ -86,14 +86,14 @@ export default function Signup() {
                         type="password"
                         autoComplete="current-password"
                         required
-                        className="appearance-none  block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-3"
+                        className="input-field appearance-none focus:outline-none focus:z-10"
                         placeholder="Password"
                     />
                 </div>
                 {/* Password Confirmation*/}
                 <div>
                     <label htmlFor="password-confirmation" className="sr-only">
-                    Password
+                    Password Confirmation
                     </label>
                     <input
                         id="password-confirmation"
@@ -103,7 +103,7 @@ export default function Signup() {
                         type="password"
                         autoComplete="current-password"
                         required
-                        className="appearance-none  block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                        className="input-field appearance-none focus:outline-none focus:z-10"
                         placeholder="Password Confirmation"
                     />
                 </div>

@@ -1,5 +1,3 @@
-
-
 export default function SocialLogins({handleSocialAuth, providers}) {
 
     const {googleProvider, githubProvider, twitterProvider} = providers
@@ -16,22 +14,16 @@ export default function SocialLogins({handleSocialAuth, providers}) {
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-3">
-                    {/* GOOGLE AUTH  */}
-                <div 
-                    onClick={() => handleSocialAuth(googleProvider)}
-                    className=" cursor-pointer w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
+                {/* GOOGLE AUTH  */}
+                <div onClick={() => handleSocialAuth(googleProvider)} className="btn-social-login">
                     <span className="sr-only">Sign in with Google</span>
                     <svg className="w-5 h-5" aria-hidden="true" fill="currentColor"  viewBox="0 0 30 30">
                         <path d="M 15.003906 3 C 8.3749062 3 3 8.373 3 15 C 3 21.627 8.3749062 27 15.003906 27 C 25.013906 27 27.269078 17.707 26.330078 13 L 25 13 L 22.732422 13 L 15 13 L 15 17 L 22.738281 17 C 21.848702 20.448251 18.725955 23 15 23 C 10.582 23 7 19.418 7 15 C 7 10.582 10.582 7 15 7 C 17.009 7 18.839141 7.74575 20.244141 8.96875 L 23.085938 6.1289062 C 20.951937 4.1849063 18.116906 3 15.003906 3 z"/>
                     </svg>
                 </div>
 
-                    {/* TWITTER AUTH */}
-                <div 
-                    onClick={() => handleSocialAuth(twitterProvider)}
-                    className="cursor-pointer w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
+                {/* TWITTER AUTH */}
+                <div onClick={() => handleSocialAuth(twitterProvider)} className="btn-social-login">
                     <span className="sr-only">Sign in with Twitter</span>
                     <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M6.29 18.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0020 3.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 7.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 010 16.407a11.616 11.616 0 006.29 1.84" />
@@ -40,10 +32,7 @@ export default function SocialLogins({handleSocialAuth, providers}) {
                 </div>
 
                 {/* GITHUB AUTH */}
-                <div 
-                    onClick={() => handleSocialAuth(githubProvider)}
-                    className="cursor-pointer w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                >
+                <div onClick={() => handleSocialAuth(githubProvider)} className="btn-social-login">
                     <span className="sr-only">Sign in with GitHub</span>
                     <svg className="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                     <path
