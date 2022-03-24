@@ -27,8 +27,8 @@ For any questions, feedback or feature suggestions tweet at me [@simonsjournal](
 
 List of Auth hooks:
 
-- useAuthContext : Access our Auth Context to retreive and monitor user authentication state from firebase and access dispatch actions to update user state
-- useLogin : Login a user with email and password, invoke login function from firebase and persit to local state
-- useLogout : Invoke logout function from firebase and persit to local state
-- useSignup : Create a user with email and password, invoke signup function from firebase and persit to local state
-- useSocialAuth : Create or Login a user through using Social Authentication and persit status to local state
+- `useAuthContext` : Access our Auth Context to retreive and monitor user authentication state from firebase and access dispatch actions to update user state
+- `useLogin` : Login a user with email and password, invoke login function from firebase and persit to local state
+- `useLogout` : Invoke logout function from firebase and persit to local state
+- `useSignup` : Create a user with email and password, invoke signup function from firebase and persit to local state
+- `useSocialAuth` : Create or Login a user through using Social Authentication and persit status to local state
