@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# Firebase Autthentication Boilerplate with React & Tailwind
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A minimal authentication starting point for any future SASS projects. Designed using a custom hooks architecture. Development roadmap and feature features :
 
-## Available Scripts
+- [x] Email Signup with forget password
+- [ ] Custom Reset Password page
+- [x] Social Logins (Google, Twitter, Github)
+- [ ] Social Auth Error Management
+- [ ] Update to Firebase v9
+- [ ] Settings page for account deletion, email update and password reset.
+- [ ] Email verification
+- [ ] Welcome Email
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Required steps to reproduce project locally.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Update firebase config to match your project
+2. Activate social auths on firebase and selected social platform
+3. `npm start` : Runs the app in the development mode.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Community & Support
 
-### `npm test`
+For any questions, feedback or feature suggestions tweet at me @simonsjournal. For any bugs and errors you encounter create a new Github Issue.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## React Firebase Hooks - Auth
 
-### `npm run build`
+List of Auth hooks:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- useAuthContext : Access our Auth Context to retreive and monitor user authentication state from firebase and access dispatch actions to update user state
+- useLogin : Login a user with email and password, invoke login function from firebase and persit to local state
+- useLogout : Invoke logout function from firebase and persit to local state
+- useSignup : Create a user with email and password, invoke signup function from firebase and persit to local state
+- useSocialAuth : Create or Login a user through using Social Authentication and persit status to local state
