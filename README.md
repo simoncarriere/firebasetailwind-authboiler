@@ -21,7 +21,7 @@ Required steps to reproduce project locally.
 
 ## Community & Support
 
-For any questions, feedback or feature suggestions tweet at me @simonsjournal. For any bugs and errors you encounter create a new Github Issue.
+For any questions, feedback or feature suggestions tweet at me [@simonsjournal](https://twitter.com/simonsjournal). For any bugs and errors you encounter create a new Github Issue.
 
 ## React Firebase Hooks - Auth
 
