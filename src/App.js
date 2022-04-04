@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Forgot from './pages/Forgot'
+import AccountSettings from './pages/AccountSettings'
 
 // Hooks
 import { useAuthContext } from './hooks/useAuthContext';
@@ -26,6 +27,9 @@ export default function App() {
                 </Route>
                 <Route exact path="/dashboard">
                   {user ? <Dashboard /> : <Redirect to="/login"/>}
+                </Route>
+                <Route exact path="/settings">
+                  {user ? <AccountSettings /> : <Redirect to="/account-settings"/>}
                 </Route>
                 <Route path="/login">
                   {!user ? <Login /> : <Redirect to="/dashboard"/>}

@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom'
 // Hooks
 import {useLogout} from '../hooks/useLogout'
 import {useAuthContext} from '../hooks/useAuthContext'
+
+// Componenents
+import Settings from './Settings'
   
 export default function Navbar() {
 
@@ -10,7 +13,7 @@ export default function Navbar() {
     const {logout} = useLogout()
 
     return (
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+        <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="w-full py-6 flex items-center justify-between ">
             <div className="flex items-center">
               <Link to="/">
@@ -31,14 +34,14 @@ export default function Navbar() {
             {user && (
                 <div className="ml-10 space-x-4 flex items-center">
                     <p>Hello, {user.displayName}</p>
-                   
-                    <button 
+                    <Settings logout={logout} user={user}/>
+                    {/*<button 
                         onClick={logout}
                         
                         className="btn-dark"
                     >
                         Logout
-                    </button>
+            </button> */}
                 </div>
             )}
           </div>

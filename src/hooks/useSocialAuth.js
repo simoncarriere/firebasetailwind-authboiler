@@ -6,7 +6,7 @@ export const useSocialAuth = () => {
 
     const [error, setError] = useState(null)
     const [isPending, setIsPending] = useState(false)
-    const [isCancelled, setIsCancelled] = useState(false) //Cleanup function
+    const [isCancelled, setIsCancelled] = useState(false) // For Cleanup 
     const {dispatch} = useAuthContext() 
 
     const socialSignup = async (provider) => {
