@@ -28,8 +28,8 @@ export default function App() {
                 <Route exact path="/dashboard">
                   {user ? <Dashboard /> : <Redirect to="/login"/>}
                 </Route>
-                <Route exact path="/settings">
-                  {user ? <AccountSettings /> : <Redirect to="/account-settings"/>}
+                <Route exact path="/account-settings">
+                  {user ? <AccountSettings /> : <Redirect to="/login"/>}
                 </Route>
                 <Route path="/login">
                   {!user ? <Login /> : <Redirect to="/dashboard"/>}

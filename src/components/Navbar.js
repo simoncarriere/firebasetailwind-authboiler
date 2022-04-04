@@ -12,6 +12,7 @@ export default function Navbar() {
     const {user} = useAuthContext()
     const {logout} = useLogout()
 
+
     return (
         <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="w-full py-6 flex items-center justify-between ">
@@ -35,13 +36,7 @@ export default function Navbar() {
                 <div className="ml-10 space-x-4 flex items-center">
                     <p>Hello, {user.displayName}</p>
                     <Settings logout={logout} user={user}/>
-                    {/*<button 
-                        onClick={logout}
-                        
-                        className="btn-dark"
-                    >
-                        Logout
-            </button> */}
+                    {/*<button onClick={logout} className="btn-dark">Logout</button> */}
                 </div>
             )}
           </div>
