@@ -10,8 +10,9 @@ A minimal authentication starting point for any future SASS projects. Designed u
 - [ ] Settings page for account deletion, email update and password reset.
 - [ ] Email verification
 - [ ] Welcome Email
+- [ ] Tailwind Dark Mode
 
-## Installation
+## Setup
 
 Required steps to reproduce project locally.
 
