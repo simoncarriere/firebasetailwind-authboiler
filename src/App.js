@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 // Componenents
 import Navbar from './components/Navbar.js'
+import Footer from './components/Footer.js'
 import Home from './pages/Home'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
@@ -20,6 +21,7 @@ export default function App() {
     <>
       {authIsReady && ( 
         <BrowserRouter>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <Navbar />
               <Switch>
                 <Route exact path="/">
@@ -41,6 +43,7 @@ export default function App() {
                   {!user ? <Forgot /> : <Redirect to="/dashboard"/>}
                 </Route>
               </Switch>
+            </div>
         </BrowserRouter>
       )}
     </>

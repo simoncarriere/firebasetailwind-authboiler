@@ -10,7 +10,6 @@ export const useSignup = () => {
     const [isCancelled, setIsCancelled] = useState(false) //Cleanup function
     const {dispatch} = useAuthContext() 
 
-
     // Firebase auth allows us to use & set certain properties (Coming from our form feilds)
     const signup = async(email, password, displayName, passwordConfirmation) => {
         // Reset Error State

@@ -14,8 +14,7 @@ export default function Navbar() {
 
 
     return (
-        <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
-          <div className="w-full py-6 flex items-center justify-between ">
+        <nav aria-label="Top" className="w-full py-6 flex items-center justify-between ">
             <div className="flex items-center">
               <Link to="/">
                 <span className="sr-only">Workflow</span>
@@ -39,7 +38,6 @@ export default function Navbar() {
                     {/*<button onClick={logout} className="btn-dark">Logout</button> */}
                 </div>
             )}
-          </div>
         </nav>
     )
   }
