@@ -7,7 +7,7 @@ import {useAuthContext} from '../hooks/useAuthContext'
 // Componenents
 import Settings from './Settings'
   
-export default function Navbar() {
+export default function Navbar({toggleDarkMode, darkMode}) {
 
     const {user} = useAuthContext()
     const {logout} = useLogout()
@@ -19,8 +19,8 @@ export default function Navbar() {
               <Link to="/">
                 <span className="sr-only">Workflow</span>
                 <img
-                  className="h-10 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark.svg?color=black"
+                  className="h-10 w-auto "
+                  src="https://tailwindui.com/img/logos/workflow-mark.svg?"
                   alt=""
                 />
               </Link>
@@ -34,10 +34,11 @@ export default function Navbar() {
             {user && (
                 <div className="ml-10 space-x-4 flex items-center">
                     <p>Hello, {user.displayName}</p>
-                    <Settings logout={logout} user={user}/>
+                    <Settings logout={logout} user={user} toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
                     {/*<button onClick={logout} className="btn-dark">Logout</button> */}
                 </div>
             )}
+
         </nav>
     )
   }

@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Link} from 'react-router-dom'
 
 // Icons
-import { UploadIcon, MailIcon } from '@heroicons/react/solid'
+import {UploadIcon, MailIcon} from '@heroicons/react/solid'
 
 // Hooks
 import {useAuthContext} from '../hooks/useAuthContext'
@@ -16,14 +16,15 @@ export default function AccountSettings() {
     const {user} = useAuthContext()
     const [email, setEmail] = useState('')
     const [values, setValues] = useState({password:"", confirmPassword:"",})
+    const [error, setError] = useState('')
     
-
+    // Passwords
     const inputs = [
         {
           id: 1,
           name: "password",
           type: "password",
-          placeholder: "Password",
+          placeholder: "New Password",
           errormessage:
             "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
           label: "Reset Password",
@@ -34,24 +35,50 @@ export default function AccountSettings() {
           id: 2,
           name: "confirmpassword",
           type: "password",
-          placeholder: "Confirm Password",
+          placeholder: "Confirm New Password",
           errormessage: "Passwords don't match!",
-          label: "Reset Confirm Password",
+          label: null,
           pattern: values.password,
           autoComplete: 'off',
         },
     ]; 
 
+    const verifyEmail = () => {
+        console.log('Sent Email Verification')
+        // TODO : Check if email has already been verified, set timer one request per 60seconds, receive confirmation, display success message
+    }
+
+    const updateEmail = () => {
+        setError('')
+        console.log('Email Successfully Updated')
+        // TODO : Check if email input empty or is same as on file, Update email, manage error, display sucess message
+    }
+
+    const resetPassword = () => {
+        console.log('Password Successfully Updated')
+        // TODO : Check if password inputs match, update password, manage error, display success message
+    }
+
+    const updatePhoto = () => {
+        console.log('Photo Successfully Updated')
+        // TODO : Check if file is jpeg or gif and is bellow size restriction, update photo, manage error, display success message
+    }
+
+    const deleteUser = () => {
+        console.log('User Successfully Deleted')
+        // TODO : Initiate Popup, Confirmation,Delete User from firebase, redirect to home page, mamnage error, display success message
+    }   
+
     return ( 
         <div className="py-10">
             <header>
-                <h1 className="text-3xl font-bold leading-tight text-gray-900">Account Settings</h1>
+                <h1>Account Settings</h1>
             </header>
             <main className="px-4 py-8 sm:px-0">
 
                 {/* Email */}
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 py-12">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                    <label htmlFor="email" className="label">
                         Update Email
                     </label>
                     <div>
@@ -59,7 +86,7 @@ export default function AccountSettings() {
                             type="email"
                             name="email"
                             id="email"
-                            className="input-field"
+                            className="input-field dark:input-field-dark"
                             placeholder={user.email ? user.email : 'Your email...'}
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
@@ -69,22 +96,21 @@ export default function AccountSettings() {
                         />
                             
                         <div className="flex">
-                            <button className="btn-light">Update</button>
-                            {/* Add verification check */}
-                            <button className="btn-outline ml-4 flex text-gray-600">
+                            <button className="btn-light dark:btn-dark" onClick={updateEmail}>Update</button>
+                            {/* Check for verification status */}
+                            <button className="btn-outline dark:btn-outline-dark ml-4 flex text-gray-600 " onClick={verifyEmail}>
                                 <MailIcon className="mr-2 h-4 w-4 mt-1 " aria-hidden="true" />
                                 Verify Email
                             </button>
                         </div>
                     </div>
-                </div>
-                
+                </div>  
                 
                 {/* Password Reset */}
-                <div className="sm:border-t sm:border-gray-200 py-12">
+                <div className="sm:border-t sm:border-gray-200 py-12 dark:sm:border-gray-700">
                     {inputs.map((input) => (
                         <div className="sm:grid sm:grid-cols-3 sm:gap-4" key={input.id}>
-                            <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">{input.label}</label>
+                            <label className="label">{input.label}</label>
                             <FormInput
                                 {...input}
                                 value={values[input.name]}
@@ -93,13 +119,13 @@ export default function AccountSettings() {
                         </div>
                     ))} 
                     <div className="sm:grid sm:grid-cols-3 sm:gap-4">
-                        <button className="btn-light sm:col-start-2 w-48">Reset Password</button> 
+                        <button className="btn-light sm:col-start-2 w-48 dark:btn-dark" onClick={resetPassword}>Reset Password</button> 
                     </div>
                 </div>
 
                 {/* Profile Photo */}
-                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12">
-                    <label htmlFor="photo" className="block text-sm font-medium text-gray-700">
+                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12 dark:sm:border-gray-700">
+                    <label htmlFor="photo" className="label">
                     {user.photoURL ? 'Change' : 'Upload'} Profile Photo
                     </label>
                     <div className="sm:col-span-2">
@@ -125,7 +151,7 @@ export default function AccountSettings() {
                                     </span>
                                     <input type="file" className="ml-4 block w-full text-sm text-slate-500
                                     file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold
-                                    file:bg-slate-100 file:text-slate-600 hover:file:bg-slate-200 file:cursor-pointer"/>
+                                    file:bg-slate-100 file:text-slate-600 hover:file:bg-slate-200 file:cursor-pointer" onClick={updatePhoto}/>
                                 </label>
                             </form>
                         </div>
@@ -133,33 +159,21 @@ export default function AccountSettings() {
                 </div>
 
                 {/* Delete Account */}
-                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12">
-                    <p className="block text-sm font-medium text-gray-700">
+                <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12 dark:sm:border-gray-700">
+                    <p className="label">
                         Desactivate your account
                     </p>
                     <div className="sm:col-span-2">
-                        <span className="text-red-700 cursor-pointer">Desactivate</span>
+                        <span className="text-red-700 cursor-pointer hover:text-red-800 dark:text-red-500" onClick={deleteUser}>Desactivate</span>
                     </div>
                 </div>
 
                 {/* Buttons */}                   
                 <div className="flex mt-8">
-                    <Link to="/" className="btn-outline">Cancel</Link>
+                    <Link to="/" className="btn-dark dark:btn-light ">Cancel</Link>
                 </div>
 
             </main>
         </div>
     )
 }
-
-
-
-
-  // const deleteUser = () => {
-    //     user.delete().then(() => {
-    //         console.log('user delete success')
-    //         // Create Popup and redirect to home pageå
-    //     }).catch(error => {
-    //         console.log(error.message)
-    //     })
-    // }   

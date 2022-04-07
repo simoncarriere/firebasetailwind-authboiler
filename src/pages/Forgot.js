@@ -76,7 +76,7 @@ export default function Forgot() {
                         {!isPending ? (
                             <button
                                 type="submit"
-                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="btn-dark w-full py-4"
                             >
                                 Send recovery email
                             </button>
@@ -84,7 +84,7 @@ export default function Forgot() {
                             <button
                                 type="text"
                                 disabled
-                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-grey-700 bg-gray-100  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="btn-light w-full py-4"
                             >
                                 Sending...
                             </button>

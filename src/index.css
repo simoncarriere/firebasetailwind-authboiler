@@ -1,41 +1,78 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
-.btn-light {
-  @apply inline-block bg-slate-100 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-600 hover:bg-slate-200;
-}
-.btn-outline {
-  @apply inline-block border border-slate-300 py-2 px-4 rounded-md text-base font-medium text-slate-800 hover:bg-slate-50;
-}
-.btn-dark {
-  @apply inline-block bg-slate-800 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-100 hover:bg-slate-900;
+
+@layer base {
+  label {
+    @apply block text-sm font-medium sm:mt-px sm:pt-2 text-gray-800 dark:text-gray-300
+  }
+  h1 {
+    @apply text-3xl font-bold leading-tight text-gray-900 dark:text-gray-100
+  }
+  h2 {
+    @apply text-2xl text-gray-900 dark:text-gray-100
+  }
 }
 
-.btn-social-login {
-  @apply cursor-pointer w-full inline-flex justify-center py-2 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-500 hover:bg-slate-50;
+
+@layer components {
+
+  
+  .btn-light {
+    @apply inline-block bg-slate-100 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-600 hover:bg-slate-200;
+  }
+  .btn-outline {
+    @apply inline-block border border-slate-300 py-2 px-4 rounded-md text-base font-medium text-slate-800 hover:bg-slate-50;
+  }
+  .btn-outline-dark {
+    @apply border-slate-700  text-slate-200 hover:bg-slate-800;
+  }
+  .btn-dark {
+    @apply inline-block bg-slate-700 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-100 hover:bg-gray-900;
+  }
+
+  .btn-social-login {
+    @apply cursor-pointer w-full inline-flex justify-center py-2 px-4 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-500 hover:bg-slate-50;
+  }
+  
+  .input-field {
+    @apply 
+      block 
+      w-full 
+      mb-3 
+      p-4
+      sm:text-sm 
+      shadow-sm 
+      rounded-md 
+      border 
+      border-slate-300 
+      placeholder-slate-500 
+      text-slate-900 
+      focus:ring-indigo-500 
+      focus:border-indigo-500 
+      invalid:border-red-300 
+      invalid:text-red-900 
+      invalid:placeholder-red-300  
+      invalid:focus:ring-red-500 
+      invalid:focus:border-red-500
+  } 
+  .input-field-dark {
+    @apply bg-gray-800 border-gray-900 placeholder-gray-400 text-white
+  }
 }
 
-.input-field {
-  @apply 
-    block 
-    w-full 
-    mb-3 
-    p-4
-    sm:text-sm 
-    shadow-sm 
-    rounded-md 
-    border 
-    border-slate-300 
-    placeholder-slate-500 
-    text-slate-900 
-    focus:ring-indigo-500 
-    focus:border-indigo-500 
-    invalid:border-red-300 
-    invalid:text-red-900 
-    invalid:placeholder-red-300  
-    invalid:focus:ring-red-500 
-    invalid:focus:border-red-500;
-}
+
+/* @layer utilities {
+  .btn-light-darkmode {
+    @apply dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800
+  }
+  .btn-dark-darkmode {
+    @apply dark:bg-slate-200 dark:text-slate-800
+  }
+  
+} */
+
 
 /* Create / Login / Forget buttons : 
     group 
@@ -52,5 +89,3 @@
     focus:ring-offset-2 
     focus:ring-indigo-500 
 */
-
-@tailwind utilities;

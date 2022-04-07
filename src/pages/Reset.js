@@ -4,8 +4,6 @@ import {projectAuth} from '../firebase/config.js'
 // Hooks
 // import {useForgot} from '../hooks/useForgot'
 
-
-
 export default function Reset() {
 
     const [newPassword, setNewPassword] = useState('')
@@ -53,7 +51,7 @@ export default function Reset() {
                     <div>
                         <button
                             type="submit"
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="btn-dark w-full py-4"
                         >
                             Update Password
                         </button>

@@ -15,6 +15,32 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const {login, error,isPending} = useLogin()
 
+    const [values, setValues] = useState({email:"", password:"",})
+
+    // Inputs 
+    const inputs = [
+        {
+          id: 1,
+          name: "email",
+          type: "email",
+          placeholder: "Email",
+          errorMessage: "It should be a valid email address!",
+          label: "Email",
+          autoComplete: 'email',
+          required: true
+        },
+        {
+          id: 2,
+          name: "password",
+          type: "password",
+          placeholder: "Password",
+          errorMessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+          label: "Password",
+          pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+          required: true,
+        },
+    ]; 
+
     const handleSubmit = (e) => {
       e.preventDefault()
       login(email, password)
@@ -22,7 +48,6 @@ export default function Login() {
 
     // Social Signup
     const {socialSignup, googleProvider, githubProvider, twitterProvider} = useSocialAuth()
-
     const handleSocialAuth = (provider) => {
         socialSignup(provider)
     }
@@ -31,7 +56,7 @@ export default function Login() {
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-2xl font-base text-gray-900">Welcome back</h2>
+            <h2 className="mt-6 text-center">Welcome back</h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit} >
             <input type="hidden" name="remember" defaultValue="true" />
@@ -80,7 +105,8 @@ export default function Login() {
               {!isPending ? (
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  // inline-block bg-slate-800 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-100 hover:bg-slate-900
+                  className="btn-dark w-full py-4"
                 >
                   Log in
                 </button>
@@ -88,7 +114,7 @@ export default function Login() {
                 <button
                   type="text"
                   disabled
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-grey-700 bg-gray-100  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="btn-light w-full"
                 >
                   loading...
                 </button>
