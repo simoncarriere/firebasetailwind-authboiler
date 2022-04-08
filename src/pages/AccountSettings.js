@@ -14,7 +14,7 @@ import FormInput from '../components/FormInput'
 export default function AccountSettings() {
 
     const {user} = useAuthContext()
-    const {updateEmail, error, isPending, success} = useUpdate()
+    const {updateEmail, passwordReset, error, isPending, success} = useUpdate()
     const [email, setEmail] = useState('')
     const [values, setValues] = useState({password:"", confirmPassword:"",})
 
@@ -43,22 +43,26 @@ export default function AccountSettings() {
         },
     ]; 
 
-    const verifyEmail = () => {
+    // DONE
+    const verifyEmail = (e) => {
         // TODO : Check if email has already been verified, set timer one request per 60seconds, receive confirmation, display success message
+        e.preventDefault()
         user.sendEmailVerification().then(() => 
             console.log('Sent Email Verification')
         )
     }
-
-    // TODO : Check if email input empty or is same as on file, Update email, manage error, display sucess message
+    // DONE
     const updateUserEmail = (e) => {
         e.preventDefault();
         updateEmail(email)
     }
    
-    const resetPassword = () => {
-        console.log('Password Successfully Updated')
-        // TODO : Check if password inputs match, update password, manage error, display success message
+    // TODO : Error and scuess messages 
+    const resetPassword = (e) => {
+        e.preventDefault()
+        if (values.password === values.confirmPassword){
+            passwordReset(values.password)
+        }
     }
 
     const updatePhoto = () => {
@@ -66,9 +70,13 @@ export default function AccountSettings() {
         // TODO : Check if file is jpeg or gif and is bellow size restriction, update photo, manage error, display success message
     }
 
+    // TODO : Initiate Popup, Confirmation,Delete User from firebase, redirect to home page, mamnage error, display success message
     const deleteUser = () => {
-        console.log('User Successfully Deleted')
-        // TODO : Initiate Popup, Confirmation,Delete User from firebase, redirect to home page, mamnage error, display success message
+        user.delete().then(() => {
+            console.log('User successfully deleted')
+          }).catch((error) => {
+            console.log(error.message)
+          });
     }   
 
     return ( 
