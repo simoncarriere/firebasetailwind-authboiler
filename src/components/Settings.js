@@ -23,7 +23,7 @@ export default function Settings({logout, user, toggleDarkMode, darkMode}) {
         <Menu.Button>
             {user.photoURL ? (
                 <img
-                    className="inline-block h-12 w-12 rounded-full"
+                    className="inline-block h-12 w-12 rounded-lg"
                     src={user.photoURL}
                     alt="profile"
                 />
