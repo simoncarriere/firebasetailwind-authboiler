@@ -7,6 +7,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+// Backup Icon
+// {darkMode ? (
+//     <MoonIcon className="h-6 w-6"/>
+//     ) : (
+//     <SunIcon className="h-6 w-6"/>
+// )}
+
 export default function Settings({logout, user, toggleDarkMode, darkMode}) {
 
   return (
@@ -48,12 +55,8 @@ export default function Settings({logout, user, toggleDarkMode, darkMode}) {
                 {/* Appearence (Light/Day) */}
                 <div className="block px-4 py-3 dark:hover:bg-gray-700 ">
                     <span className="sr-only">Set Theme</span>   
-                    <p onClick={toggleDarkMode} className=" text-sm flex cursor-pointer text-gray-700 dark:text-gray-200">Appearence
-                    {darkMode ? (
-                        <MoonIcon className="h-6 w-6"/>
-                        ) : (
-                        <SunIcon className="h-6 w-6"/>
-                    )}
+                    <p onClick={toggleDarkMode} className=" text-sm flex cursor-pointer text-gray-700 dark:text-gray-200">Appearence 
+                        {darkMode ? " (dark)" : " (light)"}
                     </p>
                 </div>
                 <div className="py-1">

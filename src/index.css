@@ -20,7 +20,6 @@
   }
 }
 
-
 @layer components {
 
   
@@ -61,33 +60,13 @@
       invalid:placeholder-red-300  
       invalid:focus:ring-red-500 
       invalid:focus:border-red-500
-      autofill:bg-yellow-500
-      focus:bg-yellow-500
-      /* placeholder-shown:bg-yellow-500 */
   } 
   .input-field-dark {
-    @apply bg-gray-800 border-gray-900 placeholder-gray-400 text-white
+    @apply bg-gray-800 border-gray-900 placeholder-gray-400 text-white 
+      invalid:border-red-500 
+      invalid:text-gray-100 
+      invalid:placeholder-slate-500 
+      invalid:focus:ring-red-500 
+      invalid:focus:border-red-500
   }
 }
-
-
-
-
-
-/* Change Autocomplete styles in Chrome */
-/* input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-  border: 1px solid yellow;
-  -webkit-text-fill-color: yellow;
-  -webkit-box-shadow: 0 0 0px 1000px yellow inset;
-  box-shadow: 0 0 0px 1000px yellow inset;
-  transition: background-color 5000s ease-in-out 0s;
-  color: yellow; 
-} */
