@@ -77,7 +77,7 @@ export default function Settings({logout, user, toggleDarkMode, darkMode}) {
                             <a
                             href="https://twitter.com/simonsjournal"
                             className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                active ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300',
                                 'block px-4 py-3 text-sm'
                             )}
                             >
@@ -91,7 +91,7 @@ export default function Settings({logout, user, toggleDarkMode, darkMode}) {
                             <a
                             href="https://github.com/simoncarriere/firebasetailwind-authboiler/issues"
                             className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                active ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300',
                                 'block px-4 py-3 text-sm'
                             )}
                             >
@@ -108,8 +108,8 @@ export default function Settings({logout, user, toggleDarkMode, darkMode}) {
                             type="submit"
                             onClick={logout}
                             className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block w-full text-left px-4 py-3 text-sm'
+                                active ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300',
+                                'block w-full text-left px-4 py-3 text-sm'
                             )}
                         >
                             Sign out

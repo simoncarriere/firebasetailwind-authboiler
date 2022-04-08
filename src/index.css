@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
 @layer base {
+  html {
+    font-family: 'Open Sans', sans-serif;
+  }
   label {
     @apply block text-sm font-medium sm:mt-px sm:pt-2 text-gray-800 dark:text-gray-300
   }
@@ -56,6 +61,9 @@
       invalid:placeholder-red-300  
       invalid:focus:ring-red-500 
       invalid:focus:border-red-500
+      autofill:bg-yellow-500
+      focus:bg-yellow-500
+      /* placeholder-shown:bg-yellow-500 */
   } 
   .input-field-dark {
     @apply bg-gray-800 border-gray-900 placeholder-gray-400 text-white
@@ -63,29 +71,23 @@
 }
 
 
-/* @layer utilities {
-  .btn-light-darkmode {
-    @apply dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800
-  }
-  .btn-dark-darkmode {
-    @apply dark:bg-slate-200 dark:text-slate-800
-  }
-  
+
+
+
+/* Change Autocomplete styles in Chrome */
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid yellow;
+  -webkit-text-fill-color: yellow;
+  -webkit-box-shadow: 0 0 0px 1000px yellow inset;
+  box-shadow: 0 0 0px 1000px yellow inset;
+  transition: background-color 5000s ease-in-out 0s;
+  color: yellow; 
 } */
-
-
-/* Create / Login / Forget buttons : 
-    group 
-    relative 
-    w-full 
-    flex 
-    justify-center 
-    text-sm 
-    text-white 
-    bg-gray-700 
-    hover:bg-gray-800 
-    focus:outline-none 
-    focus:ring-2 
-    focus:ring-offset-2 
-    focus:ring-indigo-500 
-*/
