@@ -40,21 +40,10 @@ export const useUpdate = () => {
     }
    
 
-    const passwordReset = async (newPassword) => {
-        try {
-            user.updatePassword(newPassword).then(() => {
-                console.log('success password reset')
-            })
-        } catch(error) {
-            console.log(error.message)
-        }
-    }
-    
-
     // Cleanup Function will only return on component unmount (Cancel pending async request)
     useEffect(() => {
         return () => setIsCancelled(true)
     }, [])
 
-    return {updateEmail, passwordReset, error, isPending, success}
+    return {updateEmail, error, isPending, success}
 }
