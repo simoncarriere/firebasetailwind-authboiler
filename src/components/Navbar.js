@@ -35,7 +35,6 @@ export default function Navbar({toggleDarkMode, darkMode}) {
                 <div className="ml-10 space-x-4 flex items-center">
                     <p>Hello, {user.displayName}</p>
                     <Settings logout={logout} user={user} toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
-                    {/*<button onClick={logout} className="btn-dark">Logout</button> */}
                 </div>
             )}
 

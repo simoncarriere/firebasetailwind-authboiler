@@ -23,7 +23,7 @@ const Dashboard = () => {
           </header>
           <main>
           <div className="px-4 py-8 sm:px-0">
-              {!user.emailVerified && (
+              {(user.email && !user.emailVerified) && (
                 <div className="rounded-md bg-blue-50 p-4 dark:bg-slate-800">
                 <div className="flex">
                   <div className="flex-shrink-0">

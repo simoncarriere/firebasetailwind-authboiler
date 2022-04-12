@@ -16,10 +16,9 @@ export default function AccountSettings() {
 
     const {user} = useAuthContext()
     const {updateEmail, error, isPending, success} = useUpdate()
-    // Modal
-    const [openModal, setOpenModal] = useState(false)
-    // Email
+
     const [email, setEmail] = useState('')
+    const [openModal, setOpenModal] = useState({show: false, errorMessage: ''})
     // Password controlled inputs
     const [passwordValues, setPasswordValues] = useState({password:"", confirmPassword:"", error:"", success:"", pending: false})
 
@@ -90,21 +89,23 @@ export default function AccountSettings() {
         }
     }
 
-
     // TODO : 
     const updatePhoto = () => {
         console.log('Photo Successfully Updated')
         // TODO : Check if file is jpeg or gif and is bellow size restriction, update photo, manage error, display success message
     }
 
+    const toggleModal = () => {
+        setOpenModal({show: !openModal.show, errorMessage: ''})
+    }
+
     // TODO : Initiate Popup, Confirmation,Delete User from firebase, redirect to home page, mamnage error, display success message
     const deleteUser = () => {
-        console.log('Delete user')
-        // user.delete().then(() => {
-        //     console.log('User successfully deleted')
-        //   }).catch((error) => {
-        //     console.log(error.message)
-        //   });
+        user.delete().then(() => {
+            console.log('User successfully deleted')
+        }).catch((error) => {
+            setOpenModal({show: true, errorMessage: error.message})
+        });
     }   
 
     return ( 
@@ -117,7 +118,7 @@ export default function AccountSettings() {
                 {/* Email */}
                 <form autoComplete="off" className="sm:grid sm:grid-cols-3 sm:gap-4 py-12">
                         <label htmlFor="email" className="label">
-                            {user.email ? 'Update Email' : 'Add Email to account'}
+                            {user.email ? 'Update Email' : 'Add Email to Account'}
                         </label>
                         <div>
                             <input
@@ -125,7 +126,7 @@ export default function AccountSettings() {
                                 name="email"
                                 id="email"
                                 className="input-field dark:input-field-dark"
-                                placeholder={user.email ? user.email : 'Your email...'}
+                                placeholder={user.email ? user.email : 'Your Email...'}
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
                                 errormessage="It should be a valid email address!"
@@ -134,20 +135,18 @@ export default function AccountSettings() {
                             />
                             {/* Email Error Message */}
                             {error && (
-                                <div className="rounded-md bg-red-50 p-4 sm:col-start-2">
+                                <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800">
                                     <div className="flex">
                                         <div className="flex-shrink-0">
-                                            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                                            <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
                                         </div>
                                         <div className="ml-3">
-                                            <h3 className="text-sm font-medium text-red-800">{error}</h3>
+                                            <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{error}</h3>
                                         </div>
                                     </div>
                                 </div>
+                                
                             )}
-                            {/*<p className="block mb-6 mt-3 text-sm text-red-600 dark:text-red-500">
-                                {error}
-                            </p> */}
                             {/* Email Success Message */}
                             {success && (
                                 <div className="rounded-md bg-green-100 dark:bg-green-800 p-4 sm:col-start-2 ">
@@ -223,13 +222,13 @@ export default function AccountSettings() {
                             )}
                             {/* Password Reset Error Message */}
                             {passwordValues.error && (
-                                <div className="rounded-md bg-red-50 p-4 sm:col-start-2">
+                                <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800">
                                     <div className="flex">
                                         <div className="flex-shrink-0">
-                                            <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                                            <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
                                         </div>
                                         <div className="ml-3">
-                                            <h3 className="text-sm font-medium text-red-800">{passwordValues.error}</h3>
+                                            <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{passwordValues.error}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -248,8 +247,6 @@ export default function AccountSettings() {
                         </div>
                     </form>
                 </div>
-
-
 
                 {/* Profile Photo */}
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12 dark:sm:border-gray-700">
@@ -288,19 +285,19 @@ export default function AccountSettings() {
 
                 {/* Delete Account */}
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 py-12 dark:sm:border-gray-700">
-                    <label onClick={() => setOpenModal(true)}>
-                        Desactivate your account
+                    <label>
+                        Desactivate Your Account
                     </label>
-                    {openModal && <Modal open={openModal}/>}
-                    <div className="sm:col-span-2">
-                        <span className="text-red-700 cursor-pointer hover:text-red-800 dark:text-red-500" onClick={deleteUser}>Desactivate</span>
-                    </div>
+                    {openModal.show && <Modal openModal={openModal} toggleModal={toggleModal} deleteUser={deleteUser}/>}
+                    <button
+                        type="button"
+                        className="inline-block justify-center rounded-md border border-transparent shadow-sm  py-3 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:w-auto sm:text-sm"
+                        onClick={toggleModal}
+                        >
+                        Deactivate
+                    </button>
                 </div>
 
-                {/* Buttons */}                   
-                <div className="flex mt-8">
-                    <Link to="/" className="btn-dark dark:btn-light ">Cancel</Link>
-                </div>
 
             </main>
         </div>
