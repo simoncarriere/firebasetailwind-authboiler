@@ -9,12 +9,16 @@ import {useSocialAuth} from '../hooks/useSocialAuth'
 import SocialLogins from '../components/SocialLogins'
 import FormInput from '../components/FormInput'
 
+//Icons
+import {XCircleIcon} from '@heroicons/react/solid'
+
+
 export default function Login() {
 
-    const [values, setValues] = useState({email:"", password:"",})
-    const {login, error,isPending} = useLogin()
+    const [values, setValues] = useState({email:"", password:"", errorMessage: ""})
+    const {login, error, isPending} = useLogin()
 
-    // Inputs 
+    // Log in Fields Input 
     const Inputs = [
         {
           id: 1,
@@ -23,8 +27,8 @@ export default function Login() {
           placeholder: "Email",
           errormessage: "It should be a valid email address!",
           label: "Email",
-          autoComplete: 'email',
-          required: true
+          // autoComplete: 'email',
+          // required: true
         },
         {
           id: 2,
@@ -34,15 +38,20 @@ export default function Login() {
           errormessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
           label: "Password",
           pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-          required: true,
-          autoComplete: 'current-password',
+          // required: true,
+          // autoComplete: 'current-password',
           // className="input-field appearance-none focus:outline-none focus:z-10"
         },
     ]; 
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      login(values.email, values.password)
+      setValues({...values, errorMessage:""})
+      if (values.email.length > 1 && values.password.length > 1){
+        login(values.email, values.password)
+      } else {
+        setValues({...values, errorMessage:"Cannot leave fields blank"})
+      }
     }
 
     // Social Signup
@@ -55,10 +64,11 @@ export default function Login() {
         <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="max-w-md w-full space-y-8">
             <div>
-              <h2 className="mt-6 text-center">Welcome back</h2>
+              <h2 className="mt-6 text-center">Welcome Back</h2>
             </div>
             <form className="mt-8 space-y-6" onSubmit={handleSubmit} autoComplete="off" >
-              {/* TODO : */}
+              
+              
               <input type="hidden" name="remember" defaultValue="true" /> 
 
               {/* Login Form Inputs */}
@@ -78,7 +88,30 @@ export default function Login() {
               
               {/* Login Submit */}
               <div>
-                {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+                {error && (
+                  <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800 mb-4">
+                      <div className="flex">
+                          <div className="flex-shrink-0">
+                              <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
+                          </div>
+                          <div className="ml-3">
+                              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{error}</h3>
+                          </div>
+                      </div>
+                  </div>
+                )}
+                {values.errorMessage && (
+                  <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800 mb-4">
+                      <div className="flex">
+                          <div className="flex-shrink-0">
+                              <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
+                          </div>
+                          <div className="ml-3">
+                              <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{values.errorMessage}</h3>
+                          </div>
+                      </div>
+                  </div>
+                )}
                 {!isPending ? (
                   <button
                     type="submit"

@@ -67,6 +67,7 @@ export default function Modal({openModal, toggleModal, deleteUser}) {
                         </div>
                     )}
                   
+                  
                 </div>
               </div>
               <div className="mt-5 sm:mt-4 sm:ml-10 sm:pl-4 sm:flex">

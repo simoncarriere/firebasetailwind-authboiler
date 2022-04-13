@@ -26,20 +26,21 @@ export const useUpdate = () => {
                     setSuccess(true)
                 }
                 if(!isCancelled){
-                    setIsPending(false)
                     setError(null)
+                    setIsPending(false)
                 }
             } catch(err) {
                 if(!isCancelled){
-                    // console.log(err.message)
                     setError(err.message)
                     setIsPending(false)
                 }
             }
+        } else {
+            setError('Please enter a valid email')
+            setIsPending(false)
         }
     }
    
-
     // Cleanup Function will only return on component unmount (Cancel pending async request)
     useEffect(() => {
         return () => setIsCancelled(true)
