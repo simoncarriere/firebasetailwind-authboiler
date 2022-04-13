@@ -25,7 +25,8 @@ export default function Signup() {
             type: "text",
             placeholder: "Full Name",
             errormessage: "It should be a valid email address!",
-            label: "Full Name",                
+            label: "Full Name",      
+            autoComplete: 'off',
         },
         {
             id: 2,
@@ -33,7 +34,8 @@ export default function Signup() {
             type: "email",
             placeholder: "Email",
             errormessage: "It should be a valid email address!",
-            label: "Email"
+            label: "Email",
+            autoComplete: 'off',
         },
         {
             id: 3,
@@ -82,7 +84,7 @@ export default function Signup() {
                 <div>
                     <h2 className="mt-6 text-center">Create your account</h2>
                 </div>
-                <form className="mt-8 space-y-6" onSubmit={handleEmailAuth} autoComplete="off">
+                <form autoComplete="off" className="mt-8 space-y-6" onSubmit={handleEmailAuth}>
                     <input type="hidden" name="remember" defaultValue="true" />
 
                     {/* Login Form Inputs */}
@@ -98,7 +100,7 @@ export default function Signup() {
                         ))}
                     </div>
 
-
+                    {/* Social Logins */}
                     <SocialLogins providers={{googleProvider, githubProvider, twitterProvider}} handleSocialAuth={handleSocialAuth} />
 
                     {/* Buttons & Errors */}
@@ -133,6 +135,7 @@ export default function Signup() {
                             <button type="text" disabled className="btn-light w-full py-4" >loading...</button>
                         )}
                     </div>
+
                 </form>
 
                 {/* Link to Login */}

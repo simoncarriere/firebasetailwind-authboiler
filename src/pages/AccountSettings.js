@@ -9,7 +9,7 @@ import FormInput from '../components/FormInput'
 import Modal from '../components/Modal'
 
 // Icons
-import {CheckCircleIcon, XCircleIcon, CheckIcon, MailIcon} from '@heroicons/react/solid'
+import {CheckCircleIcon, XCircleIcon, CheckIcon,BadgeCheckIcon, MailIcon} from '@heroicons/react/solid'
 
 export default function AccountSettings() {
 
@@ -110,7 +110,7 @@ export default function AccountSettings() {
             setOpenModal({show: true, errorMessage: error.message})
         });
     } 
-    
+
     // 🔧 BUG : Modal not recognizing dark mode toggle
     const toggleModal = () => {
         setOpenModal({show: !openModal.show, errorMessage: ''})
@@ -129,17 +129,24 @@ export default function AccountSettings() {
                             {user.email ? 'Update Email' : 'Add Email to Account'}
                         </label>
                         <div>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                className="peer input-field dark:input-field-dark"
-                                placeholder={user.email ? user.email : 'Your Email...'}
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                                autoComplete="off"
-                            />
-                            
+                            <div className="mt-1 relative rounded-md shadow-sm">
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    className="peer input-field dark:input-field-dark"
+                                    placeholder={user.email ? user.email : 'Your Email...'}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email}
+                                    autoComplete="off"
+                                />
+                                {user.emailVerified && (
+                                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <BadgeCheckIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
+                                </div>
+                                )}
+                            </div>
+                          
                             {/* Email Error Message */}
                             {error && (
                                 <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800">
@@ -210,13 +217,7 @@ export default function AccountSettings() {
                                     </button>
                                 )}
                                 {/* Email Verification */}
-                                {user.email && (
-                                    user.emailVerified ? (
-                                        <span className="btn-green dark:btn-green-dark flex ml-4 text-sm" disabled>
-                                            <CheckIcon className="mr-2 h-4 w-4 mt-1 " aria-hidden="true" />
-                                            Verified
-                                        </span>
-                                    ) : (
+                                {(user.email && !user.emailVerified) && (
                                         emailVerification.isPending ? (
                                             <button disabled type="button" className="btn-outline dark:btn-dark w-36 ml-4">
                                                 <svg role="status" className="inline mr-2 w-4 h-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -231,7 +232,6 @@ export default function AccountSettings() {
                                                 Verify Email
                                             </button>
                                         )
-                                    )
                                 )}
                             </div>
                         </div>
