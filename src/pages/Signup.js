@@ -7,47 +7,66 @@ import {useSocialAuth} from '../hooks/useSocialAuth'
 
 // Componenents
 import SocialLogins from '../components/SocialLogins'
+import FormInput from '../components/FormInput'
+
+//Icons
+import {XCircleIcon} from '@heroicons/react/solid'
 
 export default function Signup() {
 
-    // Email Signup
-    const [displayName, setDisplayName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
+    const [values, setValues] = useState({displayName: "", email:"", password:"", passwordConfirmation: "", errorMessage: ""})
     const {signup, isPending, error} = useSignup()
 
-
-    // Sign Up Fields Input 
+    // Sign Up Fields Input
     const Inputs = [
         {
-          id: 1,
-          name: "email",
-          type: "email",
-          placeholder: "Email",
-          errormessage: "It should be a valid email address!",
-          label: "Email",
-          // autoComplete: 'email',
-          // required: true
+            id: 1,
+            name: "displayName",
+            type: "text",
+            placeholder: "Full Name",
+            errormessage: "It should be a valid email address!",
+            label: "Full Name",                
         },
         {
-          id: 2,
-          name: "password",
-          type: "password",
-          placeholder: "Password",
-          errormessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-          label: "Password",
-          pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-          // required: true,
-          // autoComplete: 'current-password',
-          // className="input-field appearance-none focus:outline-none focus:z-10"
+            id: 2,
+            name: "email",
+            type: "email",
+            placeholder: "Email",
+            errormessage: "It should be a valid email address!",
+            label: "Email"
         },
+        {
+            id: 3,
+            name: "password",
+            type: "password",
+            placeholder: "Password",
+            errormessage:
+              "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
+            label: "Password",
+            pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+            autoComplete: 'off',
+          },
+          {
+            id: 4,
+            name: "passwordConfirmation",
+            type: "password",
+            placeholder: "Confirm Password",
+            errormessage: "Passwords don't match!",
+            label: null,
+            pattern: values.password,
+            autoComplete: 'off',
+          },
     ]; 
     
-
     const handleEmailAuth = (e) => {
         e.preventDefault()
-        signup(email, password, displayName, passwordConfirmation)   
+        
+        setValues({...values, errorMessage:""})
+        if (values.displayName.length > 1 && values.email.length > 1 && values.password.length > 1 && values.passwordConfirmation.length > 1){
+            signup(values.email, values.password, values.displayName, values.passwordConfirmation)
+        } else {
+            setValues({...values, errorMessage:"Cannot leave fields blank"})
+        }
     }
 
     // Social Signup
@@ -63,100 +82,55 @@ export default function Signup() {
                 <div>
                     <h2 className="mt-6 text-center">Create your account</h2>
                 </div>
-                <form className="mt-8 space-y-6" onSubmit={handleEmailAuth} >
+                <form className="mt-8 space-y-6" onSubmit={handleEmailAuth} autoComplete="off">
                     <input type="hidden" name="remember" defaultValue="true" />
 
+                    {/* Login Form Inputs */}
                     <div className="rounded-md shadow-sm -space-y-px">
-                        {/* Full Name */}
-                        <div>
-                            <label htmlFor="full-name" className="sr-only">
-                            Full Name 
-                            </label>
-                            <input
-                                id="full-name"
-                                name="name"
-                                onChange={(e) => setDisplayName(e.target.value)}
-                                value={displayName}
-                                type="text"    
-                                autoComplete="name"
-                                required
-                                className="input-field"
-                                placeholder="Full Name"
-                            />
-                        </div>
-                        {/* Email */}
-                        <div>
-                            <label htmlFor="email" className="sr-only">
-                            Email 
-                            </label>
-                            <input
-                                id="email"
-                                name="email"
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                                type="email"    
-                                autoComplete="email"
-                                required
-                                className="input-field"
-                                placeholder="Email"
-                            />
-                        </div>
-                        {/* Password */}
-                        <div>
-                            <label htmlFor="password" className="sr-only">
-                            Password
-                            </label>
-                            <input
-                                id="password"
-                                name="password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className="input-field appearance-none focus:outline-none focus:z-10"
-                                placeholder="Password"
-                            />
-                        </div>
-                        {/* Password Confirmation*/}
-                        <div>
-                            <label htmlFor="password-confirmation" className="sr-only">
-                            Password Confirmation
-                            </label>
-                            <input
-                                id="password-confirmation"
-                                name="password-confirmation"
-                                onChange={(e) => setPasswordConfirmation(e.target.value)}
-                                value={passwordConfirmation}
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className="input-field appearance-none focus:outline-none focus:z-10"
-                                placeholder="Password Confirmation"
-                            />
-                        </div>
+                        {Inputs.map((input) => (
+                            <div key={input.id}>
+                                <FormInput
+                                    {...input}
+                                    value={values[input.name]}
+                                    onChange={(e) => setValues({...values, [e.target.name]: e.target.value })}
+                                />
+                            </div>
+                        ))}
                     </div>
 
 
                     <SocialLogins providers={{googleProvider, githubProvider, twitterProvider}} handleSocialAuth={handleSocialAuth} />
 
+                    {/* Buttons & Errors */}
                     <div>
-                        {error && <p className="text-red-400 text-sm mb-2">{error}</p>}
+                        {error && (
+                            <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800 mb-4">
+                                <div className="flex">
+                                    <div className="flex-shrink-0">
+                                        <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
+                                    </div>
+                                    <div className="ml-3">
+                                        <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{error}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                          )}
+                        {values.errorMessage && (
+                            <div className="rounded-md bg-red-50 p-4 sm:col-start-2 dark:bg-red-800 mb-4">
+                                <div className="flex">
+                                    <div className="flex-shrink-0">
+                                        <XCircleIcon className="h-5 w-5 text-red-400 dark:text-red-500" aria-hidden="true" />
+                                    </div>
+                                    <div className="ml-3">
+                                        <h3 className="text-sm font-medium text-red-800 dark:text-red-200">{values.errorMessage}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                          )}
                         {!isPending ? (
-                            <button
-                            type="submit"
-                            className="btn-dark w-full py-4"
-                            >
-                            Create your account
-                            </button>
+                            <button type="submit" className="btn-dark w-full py-4">Create your account</button>
                         ) : (
-                            <button
-                            type="text"
-                            disabled
-                            className="btn-light w-full py-4"
-                            >
-                            loading...
-                            </button>
+                            <button type="text" disabled className="btn-light w-full py-4" >loading...</button>
                         )}
                     </div>
                 </form>

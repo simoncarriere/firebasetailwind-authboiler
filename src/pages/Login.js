@@ -27,8 +27,6 @@ export default function Login() {
           placeholder: "Email",
           errormessage: "It should be a valid email address!",
           label: "Email",
-          // autoComplete: 'email',
-          // required: true
         },
         {
           id: 2,
@@ -38,9 +36,6 @@ export default function Login() {
           errormessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
           label: "Password",
           pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-          // required: true,
-          // autoComplete: 'current-password',
-          // className="input-field appearance-none focus:outline-none focus:z-10"
         },
     ]; 
 
@@ -66,8 +61,7 @@ export default function Login() {
             <div>
               <h2 className="mt-6 text-center">Welcome Back</h2>
             </div>
-            <form className="mt-8 space-y-6" onSubmit={handleSubmit} autoComplete="off" >
-              
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit} autoComplete="off">
               
               <input type="hidden" name="remember" defaultValue="true" /> 
 
@@ -115,7 +109,6 @@ export default function Login() {
                 {!isPending ? (
                   <button
                     type="submit"
-                    // inline-block bg-slate-800 py-2 px-4 border border-transparent rounded-md text-base font-medium text-slate-100 hover:bg-slate-900
                     className="btn-dark w-full py-4"
                   >
                     Log in
