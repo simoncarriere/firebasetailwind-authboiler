@@ -9,7 +9,7 @@ import FormInput from '../components/FormInput'
 import Modal from '../components/Modal'
 
 // Icons
-import {CheckCircleIcon, XCircleIcon, CheckIcon,BadgeCheckIcon, MailIcon} from '@heroicons/react/solid'
+import {CheckCircleIcon, XCircleIcon,BadgeCheckIcon, MailIcon} from '@heroicons/react/solid'
 
 export default function AccountSettings() {
 

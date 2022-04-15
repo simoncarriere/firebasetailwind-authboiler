@@ -1,16 +1,16 @@
 # Firebase Autthentication Boilerplate with React & Tailwind
 
-A minimal authentication starting point for any future SASS projects. Designed using a custom hooks architecture. Development roadmap and feature features :
+A tailwind & firebase authentication starting point for any future SASS projects. Designed using a custom hooks architecture. Development roadmap and feature features :
 
 - [x] Email Signup with forget password
-- [ ] Custom Reset Password page
 - [x] Social Logins (Google, Twitter, Github)
-- [ ] Social Auth Error Management
-- [ ] Update to Firebase v9
-- [ ] Settings page for account deletion, email update and password reset.
-- [ ] Email verification
+- [x] Tailwind Dark Mode
+- [x] Social Auth Error Management
+- [x] Settings page for account deletion, email update and password reset.
+- [x] Email verification
 - [ ] Welcome Email
-- [ ] Tailwind Dark Mode
+- [ ] Update to Firebase v9
+- [ ] Custom Reset Password page
 
 ## Setup
 
