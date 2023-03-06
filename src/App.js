@@ -28,8 +28,8 @@ export default function App() {
       {authIsReady && ( 
         <BrowserRouter>
           <div className={darkMode ? 'dark' : ''}>
-            <div className="dark:bg-gray-900 dark:text-white min-h-screen">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 dark:bg-gray-900 dark:text-white ">
+            <div className="min-h-screen dark:bg-gray-900 dark:text-white">
+              <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 dark:bg-gray-900 dark:text-white ">
                   <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode}/>
                   <Switch>
                     <Route exact path="/">
